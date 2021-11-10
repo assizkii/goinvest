@@ -1,0 +1,14 @@
+# Refer to https://gqlgen.com/config/ for detailed documentation.
+
+schema:
+  - invest/v1/invest.graphql
+exec:
+  filename: ../../gen/gql/generated/api.generated.go
+  package: gqlapi
+model:
+  filename: ../../gen/gql/models/models.generated.go
+  package: gqlmodels
+resolver:
+  filename: ../../../internal/services/gqlservice/resolver.go
+  type: Resolver
+  package: gqlservice
