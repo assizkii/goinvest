@@ -1,3 +1,4 @@
+config/dev.yaml
 # Binaries for programs and plugins
 *.exe
 *.exe~

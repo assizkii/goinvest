@@ -1,0 +1,47 @@
+directive @InvestService on FIELD_DEFINITION
+type Account {
+    accountId: String
+    accountType: AccountType
+}
+input AccountInput {
+    accountId: String
+    accountType: AccountType
+}
+enum AccountType {
+    TYPE_UNSPECIFIED
+    TYPE_BROKER
+    TYPE_IIS
+}
+type AccountsResponse {
+    accounts: [Account!]
+}
+type Mutation {
+    investServiceGetPortfolio(in: PortfolioRequestInput): PortfolioResponse
+    investServiceGetAccounts: AccountsResponse
+}
+input PortfolioRequestInput {
+    account: AccountInput
+}
+type PortfolioResponse {
+    positions: [Position!]
+}
+type Position {
+    figi: String
+    ticker: String
+    isin: String
+    instrumentType: String
+    balance: Float
+    blocked: Float
+    expectedYield: Yield
+    lots: Int
+    averagePositionPrice: Yield
+    averagePositionPriceNoNkd: Yield
+    name: String
+}
+type Query {
+    dummy: Boolean
+}
+type Yield {
+    currency: String
+    value: Float
+}
