@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package invest.v1;
+
+service InvestService {
+  rpc GetPortfolio(PortfolioRequest) returns (PortfolioResponse);
+  rpc GetAccounts(AccountsRequest) returns (AccountsResponse);
+}
+
+enum AccountType {
+  TYPE_UNSPECIFIED = 0;
+  TYPE_BROKER = 1;
+  TYPE_IIS = 2;
+}
+
+enum Mode {
+  MODE_UNSPECIFIED = 0;
+  MODE_SANDBOX = 1;
+  MODE_REAL = 2;
+}
+
+message User {
+  Mode mode = 1;
+}
+
+message Account {
+  string accountId = 1;
+  AccountType accountType = 2;
+}
+
+message AccountsRequest {
+}
+
+message AccountsResponse {
+  repeated Account accounts = 1;
+}
+
+message PortfolioRequest {
+  Account account = 1;
+}
+
+message PortfolioResponse {
+  repeated Position positions = 3;
+}
+
+message Position {
+  string figi = 1;
+  string ticker = 2;
+  string isin = 3;
+  string instrument_type = 4;
+  double balance = 5;
+  double blocked = 6;
+  Yield expected_yield = 7;
+  int32 lots = 8;
+  Yield average_position_price = 9;
+  Yield average_position_price_no_nkd = 10;
+  string name = 11;
+}
+
+message Yield {
+  string currency = 1;
+  double value = 2;
+}
